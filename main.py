@@ -29,7 +29,7 @@ countries={
     "Latvia":"Riga",
     "Liechtenstein":"Vaduz",
     "Lithuania":"Vilnius",
-    "Luxembourg":"Luxembourg (city)",
+    "Luxembourg":"Luxembourg",
     "Malta":"Valletta",
     "Moldova":"Chisinau",
     "Monaco":"Monaco",
@@ -49,12 +49,13 @@ countries={
     "Sweden":"Stockholm",
     "Switzerland":"Bern",
     "Turkey":"Ankara",
-    "Ukraine":"Kyiv (also known as Kiev)",
+    "Ukraine":"Kiev",
     "United Kingdom":"London",
-    "Vatican City (Holy See)":"Vatican City"
+    "Vatican City (Holy See)":"Vatican"
 }
 
-
+user=""
+inputas=""
 country_list=[]
 capital_list=[]
 
@@ -77,7 +78,7 @@ def fun_compare(sk, value):
 def fun_game_mode(x,sk):
     result=False
     if "1" in x or "be" in x:
-        guess=input("Iveskite sostine: ")
+        guess=input(inputas)
     elif "2" in x or "su" in x:
         counter=1
         options=[]
@@ -91,7 +92,7 @@ def fun_game_mode(x,sk):
         print('Galimi variantai')
         for var in options:
             print(var)
-        guess=input("Iveskite sostine: ")
+        guess=input(inputas)
 
     result=fun_compare(sk=sk,value=guess)
     return result
@@ -116,16 +117,20 @@ def fun_game(mode):
 def fun_zaidimo_pabaiga(points):
     print("Zaidimas baigesi")
     print("Surinkote tasku: ",points)
+    print("-------------------------")
     
     
 def fun_menu():
     print("**********************************************")
-    print("Zaidimas: Sveiki, pasirinkite žaidimo rezima:")
+    print("Zaidimas: Labas,",user,", pasirinkite žaidimo rezima:")
     print("1. Spelioti be variantu")
     print("2. Spelioti su variantais")
-    mode = input("User:")
+    mode = input(inputas)
     print("**********************************************")
     fun_game(mode)
 
-fun_data_generator()
-fun_menu()
+while True:
+    user = input("Zaidimas: Kas busite?:")
+    inputas = user+":"
+    fun_data_generator()
+    fun_menu()
